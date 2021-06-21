@@ -13,14 +13,13 @@
     <nav>
       <ul>
         <li>
-          <%= link_to "ログイン", new_admin_session_path %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+
+          <%= link_to "テーマ一覧", admin_themes_path %>
 
         </li>
       </ul>
     </nav>
-
-
-
 
     <%= yield %>
   </body>

@@ -1,0 +1,12 @@
+<h1>管理者テーマ編集ページ</h1>
+
+<%= form_with model:@theme, url: admin_theme_path(@theme), method: :patch, local: true do |f| %>
+
+<%= f.text_field :name %>
+
+<%= f.submit "更新" %>
+
+<%= link_to "戻る", admin_themes_path %>
+
+<% end %>
+

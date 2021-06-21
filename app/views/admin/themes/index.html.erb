@@ -1,0 +1,26 @@
+<h1>管理者テーマ一覧　追加・削除</h1>
+
+<%= form_with model:@theme, url: admin_themes_path, method: :post, local: true do |f| %>
+<%= f.text_field :name, placeholder: "都道府県情報入力" %>
+<%= f.submit "新規登録" %>
+<% end %>
+
+<table>
+
+<% @themes.each do |theme| %>
+<tr>
+  <td>
+    <%= link_to "#{theme.name}", admin_theme_path(theme) %>
+  </td>
+
+  <td>
+    <%= link_to "編集", edit_admin_theme_path(theme) %>
+  </td>
+
+  <td>
+    <%= link_to "削除", admin_theme_path(theme), method: :delete %>
+  </td>
+</tr>
+
+<% end %>
+
