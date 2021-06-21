@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
 
+  devise_for :users, path: 'user', controllers: {
+    :sessions => 'public/sessions',
+    :registrations => 'public/registrations'
+  }
+
+
+
+ root to: 'public/homes#top'
+  get '/about' => 'public/homes#about'
+
+
+
+
+
+
   devise_for :admins, path: 'admin', controllers: {
     :sessions => 'admin/sessions'
   }
