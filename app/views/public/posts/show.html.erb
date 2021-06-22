@@ -43,10 +43,13 @@
   <%= f.submit "送信する" %>
 <% end %>
 
-<% @comments.each do |comment| %>
+<% @post.comments.each do |post_comment| %>
 ユーザー名
-<%= comment.user.name %>
-<p>
-<%= comment.comment %>
-</p>
+<%= post_comment.user.name %>
+
+<%= post_comment.comment %>
+
+  <% if post_comment.user == current_user %>
+    <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %></br>
+  <% end %>
 <% end %>
