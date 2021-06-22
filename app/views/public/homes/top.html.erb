@@ -1,1 +1,69 @@
-<h1>ユーザのトップ画面</h1>
+<h1>ユーザのトップ画面 新規投稿・投稿一覧</h1>
+
+<%= form_with model:@post, url:posts_path, method: :post, local: true do |f| %>
+  <label>タイトル</label></br>
+    <%= f.text_field :title %></br>
+
+  <label>都道府県テーマ</label></br>
+    <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" } %></br>
+
+  <label>5.7.5で表現</label></br>
+    <%= f.text_field :first_body %>
+    <%= f.text_field :middle_body %>
+    <%= f.text_field :last_body %></br>
+
+  <label>参考サイト</label></br>
+    <%= f.text_field :url %></br>
+
+    <%= f.submit "投稿" %>
+
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>ユーザ名</th>
+      <th>タイトル</th>
+      <th>都道県テーマ</th>
+      <th>川柳</th>
+      <th>参考サイト</th>
+      <th>コメント件数</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+<% @posts.each do |post| %>
+
+  <tr>
+    <td>
+      <%= post.user.name %>
+    </td>
+
+    <td>
+      <%=link_to "#{post.title}", post_path(post) %>
+    </td>
+
+    <td>
+      <%= post.theme.name %></br>
+    </td>
+
+    <td>
+      「<%= post.first_body%>　<%= post.middle_body %>　<%= post.last_body %>」</br>
+    </td>
+
+    <td>
+      <%= Rinku.auto_link(post.url, :all, 'target="_blank"').html_safe %>
+    </td>
+
+    <td>
+      <%= post.comments.count %>件
+    </td>
+  </tr>
+
+<% end %>
+
+  </tbody>
+</table>
+
+
+

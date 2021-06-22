@@ -1,0 +1,52 @@
+<h1>ユーザ投稿詳細</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザ名</th>
+      <th>タイトル</th>
+      <th>都道県テーマ</th>
+      <th>川柳</th>
+      <th>参考サイト</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <tr>
+    <td>
+      <%= @post.user.name %>
+    </td>
+
+    <td>
+      <%= @post.title %>
+    </td>
+
+    <td>
+      <%= @post.theme.name %></br>
+    </td>
+
+    <td>
+      「<%= @post.first_body%>　<%= @post.middle_body %>　<%= @post.last_body %>」</br>
+    </td>
+
+    <td>
+      <%= Rinku.auto_link(@post.url, :all, 'target="_blank"').html_safe %>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<%= form_with(model:[@post, @comment], url:post_comments_path(@post), method: :post, local: true) do |f| %>
+  <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+
+<% @comments.each do |comment| %>
+ユーザー名
+<%= comment.user.name %>
+<p>
+<%= comment.comment %>
+</p>
+<% end %>

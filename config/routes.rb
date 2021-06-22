@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users, path: 'user', controllers: {
     :sessions => 'public/sessions',
     :registrations => 'public/registrations'
@@ -9,6 +10,11 @@ Rails.application.routes.draw do
 
  root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
+    scope module: :public do
+      resources :posts, except:[:new, :index] do
+        resources :comments, only:[:create, :destroy]
+      end
+    end
 
 
 
