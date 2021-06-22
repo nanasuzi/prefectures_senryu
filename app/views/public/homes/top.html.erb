@@ -27,6 +27,7 @@
       <th>川柳</th>
       <th>参考サイト</th>
       <th>コメント件数</th>
+      <th>いいね</th>
     </tr>
   </thead>
 
@@ -57,6 +58,18 @@
 
     <td>
       <%= post.comments.count %>件
+    </td>
+
+    <td>
+      <% if post.favorited_by?(current_user) %>
+        <%= link_to post_path(post) do %>
+          ♥<%= post.favorites.count %> いいね
+        <% end %>
+      <% else %>
+        <%= link_to post_path(post) do %>
+          ♡<%= post.favorites.count %> いいね
+        <% end %>
+      <% end %>
     </td>
   </tr>
 
