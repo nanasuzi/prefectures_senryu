@@ -16,7 +16,7 @@
 
   <tr>
     <td>
-      <%= @post.user.name %>
+      <%= link_to "#{@post.user.name}", user_path(@post.user) %>
     </td>
 
     <td>

@@ -1,0 +1,10 @@
+<h1>ユーザ退会確認</h1>
+
+退会をご希望される方はマイページの「退会する」より退会手続きを行ってください。</br>
+
+※退会時、お客様の情報は消去いたしますので、投稿されたデータ等も同時に失われます</br>
+　ご理解のほどお願いいたします。</br>
+
+<%= link_to "退会する", users_withdrawl_path(current_user), method: :patch %>
+
+<%= link_to "マイページへ戻る", user_path(current_user) %>

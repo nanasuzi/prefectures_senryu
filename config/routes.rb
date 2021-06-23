@@ -15,6 +15,9 @@ Rails.application.routes.draw do
         resource :favorites, only:[:create, :destroy]
           resources :comments, only:[:create, :destroy]
       end
+        resources :users, only:[:show, :edit, :update]
+          get "/users/:id/unsubscribe", to: "users#unsubscribe", as: 'users/unsubscribe'
+            patch "/users/:id/withdrawl", to: "users#withdrawl", as: 'users/withdrawl'
     end
 
 
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
       resources :themes, except:[:new]
+        resources :users, only:[:show, :edit, :update]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
