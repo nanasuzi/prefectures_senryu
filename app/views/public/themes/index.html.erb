@@ -1,0 +1,14 @@
+<h1>ユーザ　都道府県一覧</h1>
+
+<table>
+
+<% @themes.each do |theme| %>
+<tr>
+  <td>
+    <%= link_to "#{theme.name}", theme_path(theme) %>
+  </td>
+</tr>
+
+<% end %>
+
+</table>

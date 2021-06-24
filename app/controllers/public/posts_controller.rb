@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @post = current_user.posts.new(post_params)
     @post.save
@@ -8,11 +10,12 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = @post.comments
   end
 
   def edit
     @post = Post.find(params[:id])
+    @themes = Theme.all
   end
 
   def update

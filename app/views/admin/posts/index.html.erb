@@ -1,23 +1,5 @@
-<h1>ユーザのトップ画面 新規投稿・投稿一覧</h1>
+<h1>管理者投稿一覧管理</h1>
 
-<%= form_with model:@post, url:posts_path, method: :post, local: true do |f| %>
-  <label>タイトル</label></br>
-    <%= f.text_field :title %></br>
-
-  <label>都道府県テーマ</label></br>
-    <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" } %></br>
-
-  <label>5.7.5で表現</label></br>
-    <%= f.text_field :first_body %>
-    <%= f.text_field :middle_body %>
-    <%= f.text_field :last_body %></br>
-
-  <label>参考サイト</label></br>
-    <%= f.text_field :url %></br>
-
-    <%= f.submit "投稿" %>
-
-<% end %>
 <table>
   <thead>
     <tr>
@@ -36,11 +18,11 @@
   <% if post.user.is_active %>
     <tr>
       <td>
-        <%= link_to "#{post.user.name}", user_path(post.user) %>
+        <%= link_to "#{post.user.name}", admin_user_path(post.user) %>
       </td>
 
       <td>
-        <%=link_to "#{post.title}", post_path(post) %>
+        <%=link_to "#{post.title}", admin_post_path(post) %>
       </td>
 
       <td>
@@ -70,6 +52,10 @@
           <% end %>
         <% end %>
       </td>
+
+      <td>
+        <%= link_to "削除", admin_post_path(post), method: :destroy %>
+      </td>
     </tr>
   <% end %>
 
@@ -77,6 +63,3 @@
 
   </tbody>
 </table>
-
-
-

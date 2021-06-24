@@ -1,0 +1,88 @@
+<% if @user == current_admin %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1>ユーザ詳細</h1>
+<% end %>
+
+<table>
+
+  <tr>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%>
+  </tr>
+
+  <tr>
+    <td><%= @user.name %></td>
+  </tr>
+
+  <tr>
+    <th>ユーザネーム</th>
+  </tr>
+
+  <tr>
+    <td><%= @user.name %></td>
+  </tr>
+
+  <tr>
+    <th>自己紹介</th>
+  </tr>
+
+  <tr>
+    <td><%= @user.introduction %></td>
+  </tr>
+
+
+
+
+</table>
+
+<%= link_to "登録内容変更", edit_admin_user_path(@user) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザ名</th>
+      <th>タイトル</th>
+      <th>都道県テーマ</th>
+      <th>川柳</th>
+      <th>参考サイト</th>
+      <th>いいね</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td>
+      <%= post.user.name %>
+    </td>
+
+    <td>
+      <%=link_to "#{post.title}", post_path(post) %>
+    </td>
+
+    <td>
+      <%= post.theme.name %></br>
+    </td>
+
+    <td>
+      「<%= post.first_body%>　<%= post.middle_body %>　<%= post.last_body %>」</br>
+    </td>
+
+    <td>
+      <%= Rinku.auto_link(post.url, :all, 'target="_blank"').html_safe %>
+    </td>
+
+    <td>
+     <%= post.favorites.count %>件
+    </td>
+
+    <td>
+      <%= link_to "#{post.comments.count}", post_path(post) %>件
+    </td>
+  <% end %>
+  </tr>
+
+  </tbody>
+</table>

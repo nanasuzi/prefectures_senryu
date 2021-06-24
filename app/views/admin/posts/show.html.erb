@@ -1,4 +1,4 @@
-<h1>ユーザ投稿詳細</h1>
+<h1>管理者投稿詳細</h1>
 
 <table>
   <thead>
@@ -16,7 +16,7 @@
 
   <tr>
     <td>
-      <%= link_to "#{@post.user.name}", user_path(@post.user) %>
+      <%= link_to "#{@post.user.name}", admin_user_path(@post.user) %>
     </td>
 
     <td>
@@ -46,23 +46,20 @@
         <% end %>
       <% end %>
     </td>
+
+    <td>
+    <%= link_to "投稿削除", admin_post_path(@post), method: :delete %>
+    </td>
   </tr>
 
   </tbody>
 </table>
 
-<%= form_with(model:[@post, @comment], url:post_comments_path(@post), method: :post, local: true) do |f| %>
-  <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
-
-<% @comments.each do |post_comment| %>
+<% @comments.each do |post_comment| %></br>
 ユーザー名
-<%= post_comment.user.name %>
+<%= post_comment.user.name %></br>
 
 <%= post_comment.comment %>
 
-  <% if post_comment.user == current_user %>
-    <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %></br>
-  <% end %>
+<%= link_to "削除", admin_post_comment_path(post_comment.post, post_comment), method: :delete %></br>
 <% end %>

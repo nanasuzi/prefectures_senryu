@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
-
   devise_for :users, path: 'user', controllers: {
     :sessions => 'public/sessions',
     :registrations => 'public/registrations'
   }
-
-
 
  root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
@@ -18,12 +15,8 @@ Rails.application.routes.draw do
         resources :users, only:[:show, :edit, :update]
           get "/users/:id/unsubscribe", to: "users#unsubscribe", as: 'users/unsubscribe'
             patch "/users/:id/withdrawl", to: "users#withdrawl", as: 'users/withdrawl'
+              resources :themes, only:[:index, :show]
     end
-
-
-
-
-
 
   devise_for :admins, path: 'admin', controllers: {
     :sessions => 'admin/sessions'
@@ -33,6 +26,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
       resources :themes, except:[:new]
         resources :users, only:[:show, :edit, :update]
+          resources :posts, only:[:index, :show, :destroy] do
+            resources :comments, only:[:destroy]
+          end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

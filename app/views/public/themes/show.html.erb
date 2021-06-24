@@ -1,41 +1,6 @@
-<% if @user == current_user %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1>ユーザ詳細</h1>
-<% end %>
+<h1><%= @theme.name%></h1>
 
-<table>
-
-  <tr>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%>
-  </tr>
-
-  <tr>
-    <td><%= @user.name %></td>
-  </tr>
-
-  <tr>
-    <th>ユーザネーム</th>
-  </tr>
-
-  <tr>
-    <td><%= @user.name %></td>
-  </tr>
-
-  <tr>
-    <th>自己紹介</th>
-  </tr>
-
-  <tr>
-    <td><%= @user.introduction %></td>
-  </tr>
-
-
-
-
-</table>
-
-<%= link_to "登録内容変更", edit_user_path(@user) %>
+<h3>投稿一覧</h3>
 
 <table>
   <thead>
@@ -82,20 +47,6 @@
       <%= link_to "#{post.comments.count}", post_path(post) %>件
     </td>
 
-    <% if @user == current_user %>
-      <td>
-        <%= link_to "編集", edit_post_path(post) %>
-      </td>
-
-      <td>
-        <%= link_to "削除", post_path(post) %>
-      </td>
     <% end %>
 
-  <% end %>
   </tr>
-
-  </tbody>
-</table>
-
-
