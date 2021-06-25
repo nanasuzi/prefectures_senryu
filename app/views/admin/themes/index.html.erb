@@ -1,4 +1,13 @@
 <h1>管理者テーマ一覧　追加・削除</h1>
+<%= flash[:notice] %>
+
+<% if @theme.errors.any? %>
+  <%= @theme.errors.count %>件のエラー
+  <%= @theme.errors.full_messages.each do |message| %>
+  <%= message %>
+  <% end %>
+<% end %>
+
 
 <%= form_with model:@theme, url: admin_themes_path, method: :post, local: true do |f| %>
 <%= f.text_field :name, placeholder: "都道府県情報入力" %>
@@ -18,7 +27,7 @@
   </td>
 
   <td>
-    <%= link_to "削除", admin_theme_path(theme), method: :delete %>
+    <%= link_to "削除", admin_theme_path(theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
   </td>
 </tr>
 

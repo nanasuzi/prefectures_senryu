@@ -1,2 +1,35 @@
-<h1>ここは管理者のTOPです。</h1>
+<h3>会員一覧</h3>
 
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ユーザ名</th>
+      <th>会員ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+<% @users.each do |user| %>
+  <tr>
+    <td>
+      <%= link_to user_path(user) do %>
+      <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+      <% end %>
+    </td>
+
+    <td>
+      <%= user.name %>
+    </td>
+
+    <td>
+      <% if user.is_active %>
+        有効
+      <% else %>
+        退会
+      <% end %>
+    </td>
+
+    <% end %>
+  </tr>

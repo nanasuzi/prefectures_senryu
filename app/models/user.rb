@@ -8,5 +8,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  validates :name, uniqueness: true
+
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
+
   attachment :profile_image
 end

@@ -6,8 +6,13 @@ class Admin::ThemesController < AdminsController
 
   def create
     @theme = Theme.new(theme_params)
-    @theme.save
-    redirect_to admin_themes_path
+    @themes = Theme.all
+    if @theme.save
+      flash[:notice] = "作成完了"
+      redirect_to admin_themes_path
+    else
+      render :index
+    end
   end
 
   def show
@@ -19,9 +24,13 @@ class Admin::ThemesController < AdminsController
   end
 
   def update
-    theme = Theme.find(params[:id])
-    theme.update(theme_params)
-    redirect_to admin_themes_path
+    @theme = Theme.find(params[:id])
+    if @theme.update(theme_params)
+      flash[:notice] = "更新完了"
+      redirect_to admin_themes_path
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -3,8 +3,14 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    @post.save
-    redirect_to root_path
+    if @post.save
+      flash[:notice] = "投稿完了"
+      redirect_to root_path
+    else
+      @posts = Post.all
+      @themes = Theme.all
+      render "public/homes/top"
+    end
   end
 
   def show
@@ -20,8 +26,12 @@ class Public::PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post)
+    if post.update(post_params)
+      flash[:notice] = "更新完了"
+      redirect_to post_path(post)
+    else
+      render :edit
+    end
   end
 
   def destroy

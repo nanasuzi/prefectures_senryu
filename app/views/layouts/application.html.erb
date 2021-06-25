@@ -17,6 +17,10 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
           <%= link_to "投稿", root_path %>
+
+          <%= link_to "マイページ", user_path(current_user) %>
+
+          <%= link_to "テーマ一覧", themes_path %>
         </li>
 
         <% else %>
@@ -35,8 +39,9 @@
       </ul>
     </nav>
 
-
-
+    <% flash.each do |messagetype, message| %>
+      <%= content_tag :div, message, class: messagetype %>
+    <% end %>
 
     <%= yield %>
   </body>

@@ -1,4 +1,12 @@
 <h1>ユーザ投稿データ編集</h1>
+<%= flash[:notice] %>
+
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラー
+  <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 
 <%= form_with model:@post, url: post_path(@post), method: :patch, local: true do |f| %>
 
