@@ -1,30 +1,58 @@
-<h1>ユーザのトップ画面 新規投稿・投稿一覧</h1>
-  <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラー
-      <% @post.errors.full_messages.each do |message| %>
-      <%= message %>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-3 px-0">
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラー
+        <% @post.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
 
-<%= form_with model:@post, url:posts_path, method: :post, local: true do |f| %>
-  <label>タイトル</label></br>
-    <%= f.text_field :title %></br>
+      <%= form_with model:@post, url:posts_path, method: :post, local: true do |f| %>
+        <h2>投稿</h2>
+            <%= f.label :title, "タイトル" %></br>
+            <%= f.text_field :title, class:"form-control" %></br>
 
-  <label>都道府県テーマ</label></br>
-    <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" } %></br>
+            <%= f.label :theme_id, "都道府県テーマ" %></br>
+            <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" }, class: "form-control" %></br>
 
-  <label>5.7.5で表現</label></br>
-    <%= f.text_field :first_body %>
-    <%= f.text_field :middle_body %>
-    <%= f.text_field :last_body %></br>
+            <%= f.label :body_all, "5.7.5で表現" %></br>
+            <%= f.text_field :first_body, class: "form-control" %></br>
+            <%= f.text_field :middle_body, class: "form-control" %></br>
+            <%= f.text_field :last_body, class: "form-control" %></br>
 
-  <label>参考サイト</label></br>
-    <%= f.text_field :url %></br>
+            <%= f.label :url, "参考サイト" %></br>
+            <%= f.text_field :url, class: "form-control" %></br>
 
-    <%= f.submit "投稿" %>
+            <%= f.submit "投稿", class: "btn btn-success btn-block my-1" %>
+          <% end %>
+    </div>
 
-<% end %>
-<table>
+    <div class="col-9 px-0 d-flex align-items-center justify-content-center">
+      投稿する前によく考えてから投稿してください。</br>
+      秘密は守りましょう！</br>
+      誹謗中傷やわいせつな情報の発信はやめましょう!</br>
+      個人情報やプライベートな情報の書き込みは控えましょう!</br>
+    </br>
+      ＜使用方法＞</br>
+      地域のあるあるネタや、オススメ情報などを、5.7.5で表現してみましょう！</br>
+      参考サイトも掲載することで、こんな観光スポット・こんな商品があったのかなどの発見もしてみてください！</br>
+      </br>
+      ＜例＞
+      タイトル=>ユニバーサルスタジオジャパン</br>
+      川柳=>「盛り上がる　乗り物多い　楽しいで」</br>
+      参考サイト=>ユニバのHP</br>
+      このように自分がオススメしたいなぁ、と思う場所や商品、様々なワードで作成してみてください！
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+<table class="table border" rules="cols">
   <thead>
     <tr>
       <th></th>
@@ -65,7 +93,11 @@
       </td>
 
       <td>
-        <%= Rinku.auto_link(post.url, :all, 'target="_blank"').html_safe %>
+        <% if post.url.blank? %>
+          詳細なし
+        <% else %>
+          <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer">詳細</a>
+        <% end %>
       </td>
 
       <td>
@@ -91,5 +123,5 @@
   </tbody>
 </table>
 
-
-
+ </div>
+</div>

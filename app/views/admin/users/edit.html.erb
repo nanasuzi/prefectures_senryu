@@ -14,8 +14,8 @@
 <%= f.text_area :introduction, rows:'5' %></br>
 
 <label>退会ステータス</label></br>
-<%= f.radio_button :is_active, true %>有効
-<%= f.radio_button :is_active, false %>退会</br>
+<%= f.radio_button :is_active, true, id:"yes" %><label for="yes">有効</label>
+<%= f.radio_button :is_active, false, id:"no" %><label for="no">退会</label>
 
 <%= f.submit "更新" %>
 

@@ -10,34 +10,38 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
+
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand p-3" href="/"><%= image_tag 'prefectures_senryu.png', size: '250x50' %></a>
+      <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-info" %>
 
-          <%= link_to "投稿", root_path %>
+          <%= link_to "投稿", root_path, class: "btn btn-info" %>
 
-          <%= link_to "マイページ", user_path(current_user) %>
+          <%= link_to "マイページ", user_path(current_user), class: "btn btn-info" %>
 
-          <%= link_to "テーマ一覧", themes_path %>
+          <%= link_to "テーマ一覧", themes_path, class: "btn btn-info" %>
         </li>
 
         <% else %>
 
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-info" %>
 
-          <%= link_to "ホーム", root_path %>
+          <%= link_to "ホーム", root_path, class: "btn btn-info" %>
 
-          <%= link_to "about", about_path %>
+          <%= link_to "about", about_path, class: "btn btn-info" %>
 
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-info" %>
         </li>
 
         <% end %>
       </ul>
     </nav>
+  </header>
 
     <% flash.each do |messagetype, message| %>
       <%= content_tag :div, message, class: messagetype %>

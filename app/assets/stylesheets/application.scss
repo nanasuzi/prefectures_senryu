@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+ th {
+  text-align:center;
+ }
+
+ td {
+  text-align:center;
+ }
