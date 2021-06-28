@@ -1,7 +1,10 @@
-<h1>ユーザ投稿詳細</h1>
+<div class="container">
+  <div class="row">
 
-<table>
+
+<table class="table border" rules="cols">
   <thead>
+    <tr><h1>ユーザ投稿詳細</h1></tr>
     <tr>
       <th>ユーザ名</th>
       <th>タイトル</th>
@@ -13,7 +16,6 @@
   </thead>
 
   <tbody>
-
   <tr>
     <td>
       <%= link_to "#{@post.user.name}", user_path(@post.user) %>
@@ -24,7 +26,7 @@
     </td>
 
     <td>
-      <%= @post.theme.name %></br>
+      <%= link_to "#{@post.theme.name}", theme_path(@post.theme) %></br>
     </td>
 
     <td>
@@ -32,11 +34,15 @@
     </td>
 
     <td>
-      <%= Rinku.auto_link(@post.url, :all, 'target="_blank"').html_safe %>
+      <% if @post.url.blank? %>
+        詳細なし
+      <% else %>
+        <a href="<%= @post.url %>" target="_blank" rel="noopener noreferrer">詳細</a>
+      <% end %>
     </td>
 
     <td>
-        <% if @post.favorited_by?(current_user) %>
+      <% if @post.favorited_by?(current_user) %>
         <%= link_to post_favorites_path(@post), method: :delete do %>
           ♥<%= @post.favorites.count %> いいね
         <% end %>
@@ -51,18 +57,47 @@
   </tbody>
 </table>
 
-<%= form_with(model:[@post, @comment], url:post_comments_path(@post), method: :post, local: true) do |f| %>
-  <%= f.text_area :comment, rows:'3', placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-<% end %>
+  </div>
+</div>
 
-<% @comments.each do |post_comment| %>
-ユーザー名
-<%= post_comment.user.name %>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= form_with(model:[@post, @comment], url:post_comments_path(@post), method: :post, local: true) do |f| %>
+        <%= f.text_area :comment, rows:'3', placeholder: "コメント", class: "form-control" %>
+        <%= f.submit "送信する", class:"btn btn-primary btn-block my-3" %>
+      <% end %>
 
-<%= post_comment.comment %>
+<table class="table border" rules="cols">
+  <thead>
+    <tr><h1>コメント一覧</h1></tr>
+    <tr>
+      <th>ユーザ名</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
 
-  <% if post_comment.user == current_user %>
-    <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %></br>
-  <% end %>
-<% end %>
+  <tbody>
+    <% @comments.each do |post_comment| %>
+      <tr>
+        <td>
+          <%= link_to "#{post_comment.user.name}", user_path(post_comment.user) %>
+        </td>
+
+        <td>
+          <%= post_comment.comment %>
+        </td>
+
+        <td>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: "削除しますか？"} %></br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
       <% end %>
 
       <%= form_with model:@post, url:posts_path, method: :post, local: true do |f| %>
-        <h2>投稿</h2>
+        <h1>投稿</h1>
             <%= f.label :title, "タイトル" %></br>
             <%= f.text_field :title, class:"form-control" %></br>
 
@@ -54,6 +54,7 @@
   <div class="row">
 <table class="table border" rules="cols">
   <thead>
+    <tr><h1>ユーザ投稿一覧</h1></tr>
     <tr>
       <th></th>
       <th>ユーザ名</th>

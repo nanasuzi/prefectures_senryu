@@ -1,18 +1,24 @@
-<% if @user == current_admin %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+
+
+<% if @user == current_user %>
   <h1>マイページ</h1>
 <% else %>
   <h1>ユーザ詳細</h1>
 <% end %>
 
-<table>
+<table class="table border" rules="cols">
 
   <tr>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%>
+    <th>ユーザアイコン</th>
   </tr>
 
-  <tr>
-    <td><%= @user.name %></td>
-  </tr>
+<tr>
+<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%></td>
+</tr>
+
 
   <tr>
     <th>ユーザネーム</th>
@@ -30,15 +36,16 @@
     <td><%= @user.introduction %></td>
   </tr>
 
-
-
-
 </table>
 
-<%= link_to "登録内容変更", edit_admin_user_path(@user) %>
+<%= link_to "登録内容変更", edit_admin_user_path(@user), class:"btn btn-primary btn-block" %>
 
-<table>
+</div>
+
+<div class="col-9">
+<table class="table border" rules="cols">
   <thead>
+    <tr><h1>ユーザ投稿一覧</h1></tr>
     <tr>
       <th>ユーザ名</th>
       <th>タイトル</th>
@@ -59,7 +66,7 @@
     </td>
 
     <td>
-      <%=link_to "#{post.title}", post_path(post) %>
+      <%=link_to "#{post.title}", admin_post_path(post) %>
     </td>
 
     <td>
@@ -71,7 +78,11 @@
     </td>
 
     <td>
-      <%= Rinku.auto_link(post.url, :all, 'target="_blank"').html_safe %>
+      <% if post.url.blank? %>
+        詳細なし
+      <% else %>
+        <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer">詳細</a>
+      <% end %>
     </td>
 
     <td>
@@ -79,10 +90,25 @@
     </td>
 
     <td>
-      <%= link_to "#{post.comments.count}", post_path(post) %>件
+      <%= link_to "#{post.comments.count}", admin_post_path(post) %>件
     </td>
+
+    <% if @user == current_user %>
+      <td>
+        <%= link_to "編集", edit_post_path(post) %>
+      </td>
+
+      <td>
+        <%= link_to "削除", post_path(post) %>
+      </td>
+    <% end %>
+
   <% end %>
   </tr>
 
   </tbody>
 </table>
+
+    </div>
+  </div>
+</div>

@@ -1,25 +1,47 @@
-<h1>ユーザ編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+    <h1>ユーザ編集</h1>
 
-<%= form_with model:@user, url: user_path(@user), method: :patch, local: true do |f| %>
+      <%= form_with model:@user, url: admin_user_path(@user), method: :patch, local: true do |f| %>
 
-<%= f.attachment_field :profile_image %></br>
+        <%= f.attachment_field :profile_image %></br>
 
-<label>ユーザネーム</label></br>
-<%= f.text_field :name %></br>
+        <%= f.label :name, "ユーザネーム" %></br>
+        <%= f.text_field :name, class: "form-control" %></br>
 
-<label>メールアドレス</label></br>
-<%= f.text_field :email %></br>
+        <%= f.label :email, "メールアドレス" %></br>
+        <%= f.text_field :email, class: "form-control" %></br>
 
-<label>自己紹介</label></br>
-<%= f.text_area :introduction, rows:'5' %></br>
+        <%= f.label :introduction, "自己紹介" %></br>
+        <%= f.text_area :introduction, rows:'5', class: "form-control" %></br>
 
-<label>退会ステータス</label></br>
-<%= f.radio_button :is_active, true, id:"yes" %><label for="yes">有効</label>
-<%= f.radio_button :is_active, false, id:"no" %><label for="no">退会</label>
+        <div class="form-group row">
 
-<%= f.submit "更新" %>
+          <div class="col-sm-2">
+            <%= f.label :is_active, '退会確認', {class: 'form-label'} %>
+          </div>
 
-<%= link_to "戻る", admin_user_path(@user) %>
+          <div class="col-sm-10 btn-group" data-toggle="buttons">
 
+            <label class="btn btn-outline-secondary active" style="width:50%">
+              <%= f.radio_button :is_active, true, {checked: true} %> 有効
+            </label>
 
-<% end %>
+            <label class="btn btn-outline-secondary" style="width:50%">
+              <%= f.radio_button :is_active, false, {} %> 退会
+            </label>
+
+          </div>
+        </div>
+
+        <%= f.submit "更新", class: "btn btn-success btn-block" %>
+
+        <%= link_to "戻る", admin_user_path(@user), class: "btn btn-primary btn-block" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+

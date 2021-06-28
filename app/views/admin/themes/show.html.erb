@@ -1,5 +1,68 @@
-<h1>管理者のテーマ詳細ページ（テーマに紐づく投稿一覧）</h1>
+<div class="container">
+  <div class="row">
 
-<p>テーマ</p>
-<%= @theme.name %>
 
+
+<table class="table border" rules="cols">
+  <thead>
+    <tr><h1><%= @theme.name %>の投稿一覧</h1></tr>
+    <tr>
+      <th></th>
+      <th>ユーザ名</th>
+      <th>タイトル</th>
+      <th>都道県テーマ</th>
+      <th>川柳</th>
+      <th>参考サイト</th>
+      <th>いいね</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @posts.each do |post| %>
+  <tr>
+    <td>
+      <%= link_to user_path(post.user) do %>
+      <%= attachment_image_tag post.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+      <% end %>
+    </td>
+
+    <td>
+      <%= post.user.name %>
+    </td>
+
+    <td>
+      <%=link_to "#{post.title}", admin_post_path(post) %>
+    </td>
+
+    <td>
+      <%= post.theme.name %></br>
+    </td>
+
+    <td>
+      「<%= post.first_body%>　<%= post.middle_body %>　<%= post.last_body %>」</br>
+    </td>
+
+    <td>
+      <% if post.url.blank? %>
+        詳細なし
+      <% else %>
+        <a href="<%= post.url %>" target="_blank" rel="noopener noreferrer">詳細</a>
+      <% end %>
+    </td>
+
+    <td>
+     <%= post.favorites.count %>件
+    </td>
+
+    <td>
+      <%= link_to "#{post.comments.count}", admin_post_path(post) %>件
+    </td>
+
+    <% end %>
+
+  </tr>
+
+
+    </div>
+  </div>

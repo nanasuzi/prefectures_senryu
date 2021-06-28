@@ -1,36 +1,38 @@
-<h1>管理者テーマ一覧　追加・削除</h1>
-<%= flash[:notice] %>
+<div class="container">
+  <div class="row">
+    <div class="col-9 mx-auto">
 
-<% if @theme.errors.any? %>
-  <%= @theme.errors.count %>件のエラー
-  <%= @theme.errors.full_messages.each do |message| %>
-  <%= message %>
-  <% end %>
-<% end %>
+    <h1 class="text-center">テーマ追加</h1>
+    <%= flash[:notice] %>
 
+    <% if @theme.errors.any? %>
+      <%= @theme.errors.count %>件のエラー
+      <%= @theme.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
 
-<%= form_with model:@theme, url: admin_themes_path, method: :post, local: true do |f| %>
-<%= f.text_field :name, placeholder: "都道府県情報入力" %>
-<%= f.submit "新規登録" %>
-<% end %>
+    <%= form_with model:@theme, url: admin_themes_path, method: :post, local: true do |f| %>
+      <h5 class="text-center">
+        <%= f.text_field :name, placeholder: "都道府県情報入力" %>
+        <%= f.submit "新規登録" %>
+      </h5>
+    <% end %>
 
-<table>
+    <h1 class="text-center">管理者テーマ一覧　追加・削除</h1>
+      <ul class="d-flex flex-wrap flex-column list-unstyled" style="height:400px;">
+        <% @themes.each do |theme| %>
 
-<% @themes.each do |theme| %>
-<tr>
-  <td>
-    <%= link_to "#{theme.name}", admin_theme_path(theme) %>
-  </td>
-
-  <td>
-    <%= link_to "編集", edit_admin_theme_path(theme) %>
-  </td>
-
-  <td>
-    <%= link_to "削除", admin_theme_path(theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-  </td>
-</tr>
-
-<% end %>
-
-</table>
+          <li class="mx-3">
+            <h5><%= link_to "#{theme.name}", admin_theme_path(theme), class:"text-success" %>
+              <p>
+                <%= link_to "編集", edit_admin_theme_path(theme) %>
+                <%= link_to "削除", admin_theme_path(theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+              </p>
+            </h5>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

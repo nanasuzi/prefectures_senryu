@@ -1,12 +1,20 @@
-<h1>管理者テーマ編集ページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+<h1>テーマ編集</h1>
 
 <%= form_with model:@theme, url: admin_theme_path(@theme), method: :patch, local: true do |f| %>
 
-<%= f.text_field :name %>
+<%= f.label :name, "テーマ" %></br>
+<%= f.text_field :name, class: "form-control my-2" %>
 
-<%= f.submit "更新" %>
+<%= f.submit "更新", class: "btn btn-success btn-block" %>
 
-<%= link_to "戻る", admin_themes_path %>
+<%= link_to "戻る", admin_themes_path, class: "btn btn-primary btn-block" %>
 
 <% end %>
 
+
+    </div>
+  </div>
+</div>

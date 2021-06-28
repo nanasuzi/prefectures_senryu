@@ -1,4 +1,7 @@
-<h1>ユーザ投稿データ編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+
 <%= flash[:notice] %>
 
 <% if @post.errors.any? %>
@@ -9,22 +12,26 @@
 <% end %>
 
 <%= form_with model:@post, url: post_path(@post), method: :patch, local: true do |f| %>
+<h1>ユーザ投稿データ編集</h1>
+    <%= f.label :title, "タイトル" %></br>
+    <%= f.text_field :title, class: "form-control" %></br>
 
-  <label>タイトル</label></br>
-    <%= f.text_field :title %></br>
+    <%= f.label :theme_id, "都道府県テーマ" %></br>
+    <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" }, class: "form-control" %></br>
 
-  <label>都道府県テーマ</label></br>
-    <%= f.collection_select :theme_id, @themes, :id, :name, { prompt: "--選択してください--" } %></br>
+    <%= f.label :body_all, "5.7.5で表現" %></br>
+    <%= f.text_field :first_body, class: "form-control my-2" %>
+    <%= f.text_field :middle_body, class: "form-control my-2" %>
+    <%= f.text_field :last_body, class: "form-control my-2" %></br>
 
-  <label>5.7.5で表現</label></br>
-    <%= f.text_field :first_body %>
-    <%= f.text_field :middle_body %>
-    <%= f.text_field :last_body %></br>
+    <%= f.label :url, "参考サイト" %></br>
+    <%= f.text_field :url, class: "form-control" %></br>
 
-  <label>参考サイト</label></br>
-    <%= f.text_field :url %></br>
+    <%= f.submit "編集", class: "btn btn-success btn-block" %>
 
-    <%= f.submit "編集" %>
-
+<%= link_to "戻る", post_path(@post), class: "btn btn-primary btn-block" %>
 <% end %>
-<%= link_to "戻る", post_path(@post) %>
+
+    </div>
+  </div>
+</div>

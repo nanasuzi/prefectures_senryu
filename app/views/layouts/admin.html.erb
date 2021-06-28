@@ -10,21 +10,24 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
+   <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand p-3" href="/"><%= image_tag 'prefectures_senryu.png', size: '250x50' %></a>
+      <ul class="navbar-nav ml-auto">
         <li>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          管理者権限
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-info" %>
 
-          <%= link_to "テーマ一覧", admin_themes_path %>
+          <%= link_to "テーマ一覧", admin_themes_path, class: "btn btn-info" %>
 
-          <%= link_to "会員一覧", admin_root_path %>
+          <%= link_to "会員一覧", admin_root_path, class: "btn btn-info" %>
 
-          <%= link_to "投稿一覧", admin_posts_path %>
+          <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-info" %>
 
-          <%= link_to "とっぷ", admin_root_path %>
         </li>
       </ul>
     </nav>
+  </header>
 
     <%= yield %>
   </body>

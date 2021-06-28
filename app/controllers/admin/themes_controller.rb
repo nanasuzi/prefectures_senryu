@@ -17,6 +17,7 @@ class Admin::ThemesController < AdminsController
 
   def show
     @theme = Theme.find(params[:id])
+    @posts = @theme.posts
   end
 
   def edit

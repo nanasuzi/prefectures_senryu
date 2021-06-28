@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   validates :middle_body, presence: true, length: { is:7 }
   validates :last_body, presence: true, length: { is:5 }
 
-  def favorited_by?(current_user)
+  def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
 end

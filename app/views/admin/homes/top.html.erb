@@ -1,6 +1,9 @@
-<h3>会員一覧</h3>
+<div class="container">
+  <div class="row">
 
-<table>
+<h1>会員一覧</h1>
+
+<table class="table border" rules="cols">
   <thead>
     <tr>
       <th></th>
@@ -14,22 +17,25 @@
 <% @users.each do |user| %>
   <tr>
     <td>
-      <%= link_to user_path(user) do %>
+      <%= link_to admin_user_path(user) do %>
       <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
       <% end %>
     </td>
 
     <td>
-      <%= user.name %>
+      <%= link_to "#{user.name}", admin_user_path(user) %>
     </td>
 
     <td>
       <% if user.is_active %>
-        有効
+        <span class="text-success">有効</span>
       <% else %>
-        退会
+        <span class="text-danger">無効</span>
       <% end %>
     </td>
 
     <% end %>
   </tr>
+
+  </div>
+  </div>
