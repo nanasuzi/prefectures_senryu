@@ -17,10 +17,12 @@
 情報の記録、共有、暇つぶし（移動中などの隙間時間）ができる
 
 ## 設計書
+https://drive.google.com/file/d/1vnDp_u5lfLLZjplqShHADmTMtPZ4I7l7/view?usp=sharing
+https://docs.google.com/spreadsheets/d/1A7bUGinkyspZ34biTX0T7D9k2IP4G4ydKTGOVMAuxfo/edit?usp=sharing
 
 
 ## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1vOpx0xU6EGp7N2Z-9gVabXAPaQuae61U-v1WPfuQYhQ/edit#gid=0
+https://docs.google.com/spreadsheets/d/1vOpx0xU6EGp7N2Z-9gVabXAPaQuae61U-v1WPfuQYhQ/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)

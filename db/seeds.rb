@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
- #Admin.create!(email: 'kamizyou3@gmail.com',
-  #            password: 'yuta8223'
-   #           )
+ Admin.create!(email: 'kamizyou3@gmail.com',
+               password: 'yuta8223'
+              )
 
 Theme.create(name: "北海道")
 Theme.create(name: "青森")
