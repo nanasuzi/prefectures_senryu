@@ -1,9 +1,11 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_user, only:[:edit]
 
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @favorite_posts = @user.favorite_posts
   end
 
   def edit

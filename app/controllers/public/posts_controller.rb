@@ -1,6 +1,14 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
 
+  def search
+    @post = Post.new
+    @themes = Theme.all
+    @posts = Post.search(params[:keyword])
+    @keyword = params[:keyword]
+    render 'public/homes/top'
+  end
+
   def create
     @post = current_user.posts.new(post_params)
     if @post.save

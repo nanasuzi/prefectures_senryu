@@ -16,6 +16,7 @@
       <a class="navbar-brand p-3" href="/"><%= image_tag 'prefectures_senryu.png', size: '250x50' %></a>
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-info" %>
 

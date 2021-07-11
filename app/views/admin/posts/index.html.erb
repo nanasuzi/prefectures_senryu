@@ -1,6 +1,13 @@
 <div class="container">
   <div class="row">
 
+ <div class="search-form">
+    <%= form_with model:@posts_search, url:admin_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword, class: "form-control my-3" %>
+      <%= f.submit "川柳を検索", class: "btn btn-secondary btn-block my-3"%>
+    <% end %>
+ </div>
+
 <h1>投稿一覧</h1>
 
 <table class="table border" rules="cols">

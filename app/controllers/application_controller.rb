@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     case resource
     when :admin
       new_admin_session_path
-    when :customer
-      new_customer_session_path
+    when :user
+      new_user_session_path
     end
   end
 

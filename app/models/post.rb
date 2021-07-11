@@ -12,4 +12,8 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+
+  def self.search(keyword)
+    where(["first_body like? OR middle_body like? OR last_body like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
 end

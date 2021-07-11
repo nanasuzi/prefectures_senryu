@@ -8,10 +8,11 @@ Rails.application.routes.draw do
  root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
     scope module: :public do
-      resources :posts, except:[:new, :index] do
-        resource :favorites, only:[:create, :destroy]
-          resources :comments, only:[:create, :destroy]
-      end
+      get 'search' => 'posts#search'
+        resources :posts, except:[:new, :index] do
+          resource :favorites, only:[:create, :destroy]
+            resources :comments, only:[:create, :destroy]
+        end
         resources :users, only:[:show, :edit, :update]
           get "/users/:id/unsubscribe", to: "users#unsubscribe", as: 'users/unsubscribe'
             patch "/users/:id/withdrawl", to: "users#withdrawl", as: 'users/withdrawl'
@@ -26,9 +27,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
       resources :themes, except:[:new]
         resources :users, only:[:show, :edit, :update]
-          resources :posts, only:[:index, :show, :destroy] do
-            resources :comments, only:[:destroy]
-          end
+          get 'search' => 'posts#search'
+            resources :posts, only:[:index, :show, :destroy] do
+              resources :comments, only:[:destroy]
+            end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

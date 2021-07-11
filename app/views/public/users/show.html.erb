@@ -40,6 +40,17 @@
 
 <%= link_to "登録内容変更", edit_user_path(@user), class:"btn btn-primary btn-block" %>
 
+<button type="button" class="btn btn-secondary btn-block my-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  いいねした投稿一覧
+</button>
+<div class="collapse" id="collapseExample">
+    <div class="border p-3">
+        <% @favorite_posts.each do |post| %>
+          <%= link_to "#{post.title}", post_path(post), class: "d-flex flex-column my-2" %>
+        <% end %>
+    </div>
+</div>
+
 </div>
 
 <div class="col-9">
@@ -112,3 +123,4 @@
     </div>
   </div>
 </div>
+
