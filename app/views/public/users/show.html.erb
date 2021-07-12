@@ -38,6 +38,8 @@
 
 </table>
 
+<%= render 'public/relationships/follow_form', user: @user %>
+
 <%= link_to "登録内容変更", edit_user_path(@user), class:"btn btn-primary btn-block" %>
 
 <button type="button" class="btn btn-secondary btn-block my-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

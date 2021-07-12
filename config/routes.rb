@@ -17,6 +17,7 @@ Rails.application.routes.draw do
           get "/users/:id/unsubscribe", to: "users#unsubscribe", as: 'users/unsubscribe'
             patch "/users/:id/withdrawl", to: "users#withdrawl", as: 'users/withdrawl'
               resources :themes, only:[:index, :show]
+                resources :relationships, only:[:create, :destroy]
     end
 
   devise_for :admins, path: 'admin', controllers: {

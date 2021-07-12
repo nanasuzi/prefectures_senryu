@@ -6,6 +6,8 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @favorite_posts = @user.favorite_posts
+    @relationship = current_user.relationships.find_by(follow_id: @user.id)
+    @set_relationship = current_user.relationships.new
   end
 
   def edit

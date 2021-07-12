@@ -1,0 +1,13 @@
+<% unless current_user == user %>
+  <% if current_user.following?(user) %>
+    <%= form_with model: @relationship, url: relationship_path, method: :delete, local: true do |f| %>
+      <%= f.hidden_field :follow_id, value: user.id %>
+      <%= f.submit "フォローを解除する", class: "btn btn-danger my-2" %>
+    <% end %>
+  <% else %>
+    <%= form_with model: @set_relationship, url: relationships_path, mthod: :post, local: true do |f| %>
+      <%= f.hidden_field :follow_id, value: user.id %>
+      <%= f.submit "フォロー", class: "btn btn-success my-2" %>
+    <% end %>
+  <% end %>
+<% end %>
