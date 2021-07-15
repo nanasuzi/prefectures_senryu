@@ -18,6 +18,7 @@ Rails.application.routes.draw do
             patch "/users/:id/withdrawl", to: "users#withdrawl", as: 'users/withdrawl'
               resources :themes, only:[:index, :show]
                 resources :relationships, only:[:create, :destroy]
+                  resources :notifications, only:[:index]
     end
 
   devise_for :admins, path: 'admin', controllers: {
