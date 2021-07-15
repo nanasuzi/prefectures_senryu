@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+
+<h1>フォローー一覧</h1>
+
+<table class="table border" rules="cols">
+  <thead>
+  <tr>
+    <th>ユーザ名</th>
+  </tr>
+</thead>
+
+<tbody>
+<% @users.each do |user| %>
+<td>
+<%= link_to user.name, user_path(user.id) %>
+</td>
+<% end %>
+</tbody>
+</table>
+
+
+    </div>
+  </div>
+</div>

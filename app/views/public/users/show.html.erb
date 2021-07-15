@@ -38,6 +38,11 @@
 
 </table>
 
+<%= link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id) %>
+/
+<%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id) %>
+
+
 <%= render 'public/relationships/follow_form', user: @user %>
 
 <%= link_to "登録内容変更", edit_user_path(@user), class:"btn btn-primary btn-block" %>

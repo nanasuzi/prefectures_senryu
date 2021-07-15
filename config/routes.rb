@@ -19,6 +19,10 @@ Rails.application.routes.draw do
               resources :themes, only:[:index, :show]
                 resources :relationships, only:[:create, :destroy]
                   resources :notifications, only:[:index]
+                    resources :users do
+                      get :followings, on: :member
+                      get :followers, on: :member
+                    end
     end
 
   devise_for :admins, path: 'admin', controllers: {
