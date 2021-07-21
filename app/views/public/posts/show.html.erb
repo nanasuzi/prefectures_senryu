@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
 
+  <% if @comment.errors.any? %>
+    <%= @comment.errors.count %>件のエラー
+      <% @comment.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+  <% end %>
 
 <table class="table border" rules="cols">
   <thead>
