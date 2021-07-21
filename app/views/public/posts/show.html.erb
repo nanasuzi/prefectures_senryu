@@ -58,6 +58,12 @@
         <% end %>
       <% end %>
     </td>
+
+    <% if current_user.id == @post.user.id %>
+    <td>
+      <%= link_to "削除", post_path(@post), method: :delete %>
+    </td>
+    <% end %>
   </tr>
 
   </tbody>
