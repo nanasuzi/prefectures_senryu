@@ -6,10 +6,13 @@
  </div>
 </div>
 
-<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
-  <% if notifications.exists? %>
-    <%= render notifications %>
+
+  <% if @notifications_check.exists? %>
+    <%= render @notifications_check %>
   <% else %>
      通知はありません
   <% end %>
 
+   </div>
+ </div>
+</div>
