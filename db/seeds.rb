@@ -6,25 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
- User.create!(email: '1@1.com',
-                 password: '123456',
-                name: 'サンプルさん',
-                 )
+User.create!(
+   email: '1@1.com',
+   password: '123456',
+   name: 'サンプルさん',
+ )
 
- User.all.each do |user|
-  user.posts.create!(
-   title: 'テスト',
-   first_body: 'あああああ',
-   middle_body: 'あああああああ',
-   last_body: 'あああああ',
-   theme_id: 1
+User.all.each do |user|
+   user.posts.create!(
+     title: 'テスト',
+     first_body: 'あああああ',
+     middle_body: 'あああああああ',
+     last_body: 'あああああ',
+     theme_id: 1
    )
- end
+end
 
-
- Admin.create!(email: 'kamizyou3@gmail.com',
-               password: 'yuta8223'
-              )
+Admin.create!(
+    email: 'kamizyou3@gmail.com',
+    password: 'yuta8223'
+  )
 
 Theme.create(name: "北海道")
 Theme.create(name: "青森")

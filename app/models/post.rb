@@ -27,7 +27,7 @@ class Post < ApplicationRecord
         post_id: id,
         visited_id: user_id,
         action: 'favorite'
-        )
+      )
 
       if notification.visitor_id == notification.visited_id
         notification.checked = true
@@ -51,7 +51,7 @@ class Post < ApplicationRecord
       comment_id: comment_id,
       visited_id: visited_id,
       action: 'comment'
-      )
+    )
 
       if notification.visitor_id == notification.visited_id
         notification.checked = true

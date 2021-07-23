@@ -39,7 +39,7 @@ class User < ApplicationRecord
       notification = current_user.active_notifications.new(
         visited_id: id,
         action: 'follow'
-        )
+      )
       notification.save if notification.valid?
     end
   end
