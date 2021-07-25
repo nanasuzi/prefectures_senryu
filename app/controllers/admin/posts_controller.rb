@@ -21,5 +21,4 @@ class Admin::PostsController < AdminsController
     @post.destroy
     redirect_to admin_posts_path
   end
-
 end

@@ -49,6 +49,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:title, :first_body, :middle_body, :last_body, :url, :theme_id, :user_id)
   end

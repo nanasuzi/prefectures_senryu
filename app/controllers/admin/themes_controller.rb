@@ -45,5 +45,4 @@ class Admin::ThemesController < AdminsController
   def theme_params
     params.require(:theme).permit(:name)
   end
-
 end

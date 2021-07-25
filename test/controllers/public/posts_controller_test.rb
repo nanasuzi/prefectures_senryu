@@ -10,5 +10,4 @@ class Public::PostsControllerTest < ActionDispatch::IntegrationTest
     get public_posts_edit_url
     assert_response :success
   end
-
 end

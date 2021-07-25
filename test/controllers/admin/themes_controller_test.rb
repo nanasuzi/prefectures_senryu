@@ -10,5 +10,4 @@ class Admin::ThemesControllerTest < ActionDispatch::IntegrationTest
     get admin_themes_edit_url
     assert_response :success
   end
-
 end

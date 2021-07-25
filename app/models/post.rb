@@ -7,9 +7,9 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 13 }
-  validates :first_body, presence: true, length: { is:5 }
-  validates :middle_body, presence: true, length: { is:7 }
-  validates :last_body, presence: true, length: { is:5 }
+  validates :first_body, presence: true, length: { is: 5 }
+  validates :middle_body, presence: true, length: { is: 7 }
+  validates :last_body, presence: true, length: { is: 5 }
 
   def favorited_by?(current_user)
     favorites.where(user_id: user.id).exists?
@@ -53,10 +53,9 @@ class Post < ApplicationRecord
       action: 'comment'
     )
 
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
   end
-
 end

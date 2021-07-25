@@ -7,25 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(
-   email: '1@1.com',
-   password: '123456',
-   name: 'サンプルさん',
- )
+  email: '1@1.com',
+  password: '123456',
+  name: 'サンプルさん',
+)
 
 User.all.each do |user|
-   user.posts.create!(
-     title: 'テスト',
-     first_body: 'あああああ',
-     middle_body: 'あああああああ',
-     last_body: 'あああああ',
-     theme_id: 1
-   )
+  user.posts.create!(
+    title: 'テスト',
+    first_body: 'あああああ',
+    middle_body: 'あああああああ',
+    last_body: 'あああああ',
+    theme_id: 1
+  )
 end
 
 Admin.create!(
-    email: 'kamizyou3@gmail.com',
-    password: 'yuta8223'
-  )
+  email: 'kamizyou3@gmail.com',
+  password: 'yuta8223'
+)
 
 Theme.create(name: "北海道")
 Theme.create(name: "青森")
@@ -74,8 +74,3 @@ Theme.create(name: "大分")
 Theme.create(name: "宮崎")
 Theme.create(name: "鹿児島")
 Theme.create(name: "沖縄")
-
-
-
-
-
