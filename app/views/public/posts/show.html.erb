@@ -7,7 +7,6 @@
         <%= message %>
       <% end %>
   <% end %>
-
 <table class="table border" rules="cols">
   <thead>
     <tr><h1>ユーザ投稿詳細</h1></tr>
@@ -35,7 +34,7 @@
       <%= link_to "#{@post.theme.name}", theme_path(@post.theme) %></br>
     </td>
 
-    <td>
+    <td class="senryu fade">
       「<%= @post.first_body%>　<%= @post.middle_body %>　<%= @post.last_body %>」</br>
     </td>
 
@@ -47,16 +46,8 @@
       <% end %>
     </td>
 
-    <td>
-      <% if @post.favorited_by?(current_user) %>
-        <%= link_to post_favorites_path(@post), method: :delete do %>
-          ♥<%= @post.favorites.count %> いいね
-        <% end %>
-      <% else %>
-        <%= link_to post_favorites_path(@post), method: :post do %>
-          ♡<%= @post.favorites.count %> いいね
-        <% end %>
-      <% end %>
+    <td id="favorites_buttons_<%= @post.id %>">
+      <%= render partial: 'public/favorites/favorite', locals: { post: @post} %>
     </td>
 
     <% if current_user.id == @post.user.id %>

@@ -95,7 +95,7 @@
         <%= post.theme.name %></br>
       </td>
 
-      <td>
+      <td class="senryu">
         「<%= post.first_body %>　<%= post.middle_body %>　<%= post.last_body %>」</br>
       </td>
 
@@ -114,11 +114,11 @@
       <td>
         <% if post.favorited_by?(current_user) %>
           <%= link_to post_path(post) do %>
-            ♥<%= post.favorites.count %> いいね
+            ♥<%= post.favorites.count %>
           <% end %>
         <% else %>
           <%= link_to post_path(post) do %>
-            ♡<%= post.favorites.count %> いいね
+            ♡<%= post.favorites.count %>
           <% end %>
         <% end %>
       </td>
